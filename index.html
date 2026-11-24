@@ -66,6 +66,21 @@
   .g3s { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
   .cal p { margin-top: 4px; color: var(--muted); }
 
+  .perf { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 8px 22px; }
+  .perf-row { display: grid; grid-template-columns: minmax(110px, 180px) 1fr 70px; align-items: center; gap: 14px; padding: 12px 0; border-top: 1px solid var(--line); }
+  .perf-row:first-child { border-top: none; }
+  .perf-row.index { font-style: italic; color: var(--muted); }
+  .perf-name small { display: block; font-size: 12px; color: var(--grey); font-style: normal; }
+  .track { display: grid; grid-template-columns: 1fr 1fr; height: 14px; }
+  .track .neg { display: flex; justify-content: flex-end; border-right: 2px solid var(--ink); }
+  .track .pos { display: flex; }
+  .track i { display: block; height: 100%; }
+  .track .neg i { background: var(--orange); border-radius: 4px 0 0 4px; }
+  .track .pos i { background: var(--green); border-radius: 0 4px 4px 0; }
+  .val { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .val.up { color: var(--green); } .val.down { color: #A8551A; }
+  .note { font-size: 14px; color: var(--grey); }
+
   footer { border-top: 1px solid var(--line); }
   footer p { padding-top: 24px; padding-bottom: 24px; font-size: 14px; color: var(--grey); }
 </style>
@@ -119,6 +134,22 @@
           </tbody>
         </table>
       </div>
+    </section>
+
+    <section>
+      <h2>À suivre : actions du CAC 40</h2>
+      <p class="note">Évolution du cours sur 1 an, relevée entre le 4 et le 19 novembre 2026. Liste de surveillance : ces actions ne font pas encore partie de la répartition ci-dessus.</p>
+      <div class="perf">
+        <div class="perf-row"><div class="perf-name">TotalEnergies<small>Énergie</small></div><div class="track" aria-hidden="true"><div class="neg"></div><div class="pos"><i style="width:100%"></i></div></div><div class="val up">+44 %</div></div>
+        <div class="perf-row"><div class="perf-name">Air Liquide<small>Gaz industriels</small></div><div class="track" aria-hidden="true"><div class="neg"></div><div class="pos"><i style="width:58%"></i></div></div><div class="val up">+25,5 %</div></div>
+        <div class="perf-row"><div class="perf-name">L'Oréal<small>Cosmétiques</small></div><div class="track" aria-hidden="true"><div class="neg"></div><div class="pos"><i style="width:55%"></i></div></div><div class="val up">+24,1 %</div></div>
+        <div class="perf-row"><div class="perf-name">Axa<small>Assurance</small></div><div class="track" aria-hidden="true"><div class="neg"></div><div class="pos"><i style="width:52%"></i></div></div><div class="val up">+23,1 %</div></div>
+        <div class="perf-row"><div class="perf-name">Accor<small>Hôtellerie</small></div><div class="track" aria-hidden="true"><div class="neg"></div><div class="pos"><i style="width:18%"></i></div></div><div class="val up">+7,8 %</div></div>
+        <div class="perf-row index"><div class="perf-name">Indice CAC 40<small>Référence</small></div><div class="track" aria-hidden="true"><div class="neg"></div><div class="pos"><i style="width:3%"></i></div></div><div class="val up">+1,1 %</div></div>
+        <div class="perf-row"><div class="perf-name">Sanofi<small>Pharmacie</small></div><div class="track" aria-hidden="true"><div class="neg"><i style="width:3%"></i></div><div class="pos"></div></div><div class="val down">−1,0 %</div></div>
+        <div class="perf-row"><div class="perf-name">LVMH<small>Luxe</small></div><div class="track" aria-hidden="true"><div class="neg"><i style="width:80%"></i></div><div class="pos"></div></div><div class="val down">−35 %</div></div>
+      </div>
+      <p class="note">Pour investir depuis le Vietnam : un ETF qui réplique le CAC 40 via un courtier international est plus simple et plus diversifié que des actions une par une. Vérifie d'abord les règles de transfert de capitaux à l'étranger auprès de ta banque. Performances passées : elles ne préjugent pas de l'avenir.</p>
     </section>
 
     <section>
