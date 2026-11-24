@@ -7,7 +7,7 @@
   var T = {
     fr: { p: ['1 an', '2 ans', '3 ans'], period: 'Période', since: 'Variation depuis', val: 'Dernier cours',
           groups: { us: '1) États-Unis', eu: '2) Europe', asia: '3) Asie et monde', vn: '4) Vietnam' },
-          src: 'Courbes en base 100 : chaque indice part de 0 % au début de la période, pour comparer des marchés de tailles différentes. Données hebdomadaires (clôture du vendredi) ; dernier point au ',
+          src: 'Courbes en variation : chaque indice part de 0 % au début de la période, pour comparer des marchés de tailles différentes. Données hebdomadaires (clôture du vendredi) ; dernier point au ',
           src2: '. Sources : Yahoo Finance (indices internationaux), CafeF (indices vietnamiens). MSCI World représenté par l’ETF iShares MSCI World (URTH), en dollars.',
           locale: 'fr-FR' },
     en: { p: ['1 year', '2 years', '3 years'], period: 'Period', since: 'Change since', val: 'Last close',
