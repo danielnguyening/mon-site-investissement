@@ -18,6 +18,11 @@ import time
 import urllib.parse
 import urllib.request
 
+try:
+    import yfinance as yf  # installé par le workflow (pip install yfinance)
+except Exception:  # noqa: BLE001
+    yf = None
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, 'data')
 UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36'
@@ -130,10 +135,51 @@ def drop_outliers(series):
 
 # ---------------------------------------------------------------- sources
 _yahoo_cache = {}
+CUR = {'.PA': 'EUR', '.DE': 'EUR', '.MI': 'EUR', '.T': 'JPY', '.KS': 'KRW', '.TW': 'TWD', '.HK': 'HKD', '.SS': 'CNY', '.SZ': 'CNY'}
+
+
+def currency(symbol):
+    for suffix, cur in CUR.items():
+        if symbol.endswith(suffix):
+            return cur
+    return 'USD'
+
+
+def yahoo_prefetch():
+    """Télécharge d'un coup tous les symboles Yahoo avec yfinance (gère les protections anti-robot de Yahoo)."""
+    if yf is None:
+        warn('yfinance non installé : accès direct à Yahoo')
+        return
+    syms = sorted({s for src, s in CHART.values() if src == 'y'} | {w[4] for w in WORLD if w[3] == 'y'}
+                  | {i[2] for i, _ in WATCH.values() if i[1] == 'y'} | {st[3] for _, sts in WATCH.values() for st in sts if st[2] == 'y'})
+    start = (TODAY - dt.timedelta(days=3 * 365 + 30)).isoformat()
+    for k in range(0, len(syms), 15):
+        chunk = syms[k:k + 15]
+        try:
+            df = yf.download(chunk, start=start, interval='1d', auto_adjust=False, group_by='ticker', threads=False, progress=False)
+        except Exception as e:  # noqa: BLE001
+            warn(f'yfinance {chunk[0]}…: {e}')
+            continue
+        for s in chunk:
+            try:
+                try:
+                    col = df[s]['Close']
+                except Exception:  # noqa: BLE001
+                    col = df['Close'][s] if s in getattr(df['Close'], 'columns', []) else df['Close']
+                col = col.dropna()
+                series = sorted((ts.date(), float(v)) for ts, v in col.items())
+                if len(series) >= 50:
+                    _yahoo_cache[s] = (series, currency(s))
+                else:
+                    warn(f'yfinance {s}: seulement {len(series)} points')
+            except Exception as e:  # noqa: BLE001
+                warn(f'yfinance {s}: {e}')
+        time.sleep(2)
+    print(f'yfinance : {len(_yahoo_cache)}/{len(syms)} symboles', flush=True)
 
 
 def yahoo_daily(symbol, start):
-    key = (symbol, start)
+    key = symbol
     if key in _yahoo_cache:
         return _yahoo_cache[key]
     p1 = int(dt.datetime(start.year, start.month, start.day, tzinfo=dt.timezone.utc).timestamp())
@@ -283,8 +329,9 @@ def build_chart():
                 vals = [value_at(o_series, g) or o_vals[0] for g in grid] + [o_vals[-1]]
                 series[key] = vals
                 last[key] = old.get('last', {}).get(key, old.get('lastAll'))
-    if not series:
-        raise RuntimeError('aucune courbe')
+    missing = [k for k in CHART if k not in series]
+    if missing:
+        raise RuntimeError(f'courbes manquantes, fichier conservé tel quel : {missing}')
     return {'start': start.isoformat(), 'weeks': weeks, 'lastAll': max(last.values()), 'last': last, 'series': series}
 
 
@@ -362,6 +409,7 @@ def build_watch(world_rows):
 
 def main():
     os.makedirs(DATA, exist_ok=True)
+    yahoo_prefetch()
     ok = 0
     try:
         write_js('indices.js', 'IDX', build_chart(), 'Courbes hebdomadaires (clôture du vendredi) sur 3 ans + dernier cours. Sources : Yahoo Finance, CafeF.')
