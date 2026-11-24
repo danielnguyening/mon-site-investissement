@@ -1,6 +1,6 @@
 (function () {
   // [continent, pays, indice, date, dernier, var 1 an %, var 6 mois %, var 3 mois %, écart MM200 %, MM50 vs MM200 %, écart plus haut 1 an %, courbe 1 an (base 100, 27 points)]
-  var ROWS = [
+  var ROWS = window.WORLD_ROWS || [
     ['am','US','S&P 500','2026-11-23',7237,7.9,-3.2,-5.4,-1.5,3.6,-7.4,[100,102.1,102.6,102.9,103.5,104,102,102.6,99.9,94.6,102.7,107,110.6,111.5,110.4,111.4,112.4,111,113.4,115.5,114.6,113.6,114.6,116.4,114.5,112.6,107.9]],
     ['am','CA','S&P/TSX','2026-11-23',34082,11.4,-1.1,-7.2,-2,2.5,-7.8,[100,101.8,104.6,105.3,108.1,105.2,108.1,112.9,107.4,104.3,110.7,110.5,111.5,113.5,112.7,114.4,115.1,114.2,115.1,119.8,118.5,116.7,116,116.5,117.4,119.1,111.4]],
     ['am','MX','S&P/BMV IPC','2026-11-23',69356,10.9,1.5,5.5,2.5,-0.2,-3.7,[100,101.6,103.6,104,107.9,108.1,114.1,112.9,105,107.3,111.3,108.7,112.4,109.2,105.1,107.4,107.9,105.8,106.7,102.8,104.7,102.7,103.9,106.8,111.1,114.9,110.9]],
@@ -49,13 +49,13 @@
 
   var T = {
     fr: { i: 0, locale: 'fr-FR', pct: ' %',
-      rank: 'Classement mondial sur 1 an', rankNote: 'Variation de l’indice principal de chaque pays entre le 24 novembre 2025 et le 23–24 novembre 2026.',
+      rank: 'Classement mondial sur 1 an', rankNote: 'Variation de l’indice principal de chaque pays sur les 12 derniers mois.',
       cols: ['Pays', 'Indice', '1 an', '1 an', '6 mois', 'Signal'],
       sig: ['Positif', 'Neutre', 'Négatif'],
       cont: { am: 'Amériques', eu: 'Europe', as: 'Asie-Pacifique', me: 'Moyen-Orient et Afrique', gl: 'Repères mondiaux' },
-      med: 'Médiane sur 1 an', outlook: 'Tendance à 6 mois',
+      med: 'Médiane sur 1 an', outlook: 'Tendance à 6 mois (analyse de novembre 2026)',
       method: 'Comment lire le signal : il combine trois indicateurs techniques simples (cours au-dessus ou au-dessous de sa moyenne sur 200 séances, moyenne 50 séances au-dessus ou au-dessous de la moyenne 200 séances, variation sur 6 mois). Trois indicateurs favorables = Positif, deux ou trois défavorables = Négatif, sinon Neutre. Il décrit la tendance actuelle ; ce n’est pas une prévision ni un conseil d’investissement.',
-      src: 'Sources des cours : Yahoo Finance (international), CafeF (Vietnam), arrêtés au 23–24 novembre 2026. Données absentes sur la source pour l’Argentine, le Chili, la Pologne, la Thaïlande, les Philippines, l’Arabie saoudite et l’Égypte. Avis d’analystes : Morgan Stanley, UBS, Goldman Sachs, SSI Research, Vietcap (novembre 2026).',
+      src: 'Sources des cours : Yahoo Finance (international), CafeF (Vietnam), mis à jour automatiquement deux fois par jour. Données absentes sur la source pour l’Argentine, le Chili, la Pologne, la Thaïlande, les Philippines, l’Arabie saoudite et l’Égypte. Avis d’analystes : Morgan Stanley, UBS, Goldman Sachs, SSI Research, Vietcap (novembre 2026).',
       o: {
         am: 'Après le recul de novembre lié aux valeurs de l’IA, le S&P 500 repasse juste sous sa moyenne 200 séances : signal technique mitigé. Les grandes banques restent positives à 12 mois (Morgan Stanley vise 8 700 points fin 2027, UBS 8 200). Scénario central : reprise progressive, avec une volatilité élevée tant que le doute sur l’IA persiste.',
         eu: 'L’Europe résiste mieux : la plupart des indices restent proches ou au-dessus de leur moyenne 200 séances, l’Espagne, la Suisse et le Benelux en tête. UBS fait de la zone euro sa région préférée (bénéfices attendus +15 % en 2027, Euro Stoxx 50 visé à 7 000 fin 2027). Scénario central : stabilité à légère hausse ; la France reste à la traîne. La Turquie est en net repli.',
@@ -65,13 +65,13 @@
         vn: 'Vietnam : le VN-Index est 12 % sous son record et sous sa moyenne 200 séances (signal négatif à court terme), et les indices de Hanoi (HNX, HNX30) reculent nettement. Les analystes locaux restent positifs : SSI Research vise 1 940 points en 2027 (bénéfices +10 %), Vietcap 2 280 fin 2027, portés par le passage au statut de marché émergent FTSE et le retour attendu des investisseurs étrangers. Scénario central : marché volatil à court terme, puis raffermissement.'
       } },
     en: { i: 1, locale: 'en-GB', pct: '%',
-      rank: 'World ranking over 1 year', rankNote: 'Change in each country’s main index between 24 November 2025 and 23–24 November 2026.',
+      rank: 'World ranking over 1 year', rankNote: 'Change in each country’s main index over the last 12 months.',
       cols: ['Country', 'Index', '1 year', '1 year', '6 months', 'Signal'],
       sig: ['Positive', 'Neutral', 'Negative'],
       cont: { am: 'Americas', eu: 'Europe', as: 'Asia-Pacific', me: 'Middle East and Africa', gl: 'Global benchmarks' },
-      med: 'Median over 1 year', outlook: '6-month outlook',
+      med: 'Median over 1 year', outlook: '6-month outlook (November 2026 analysis)',
       method: 'How to read the signal: it combines three simple technical indicators (price above or below its 200-day average, 50-day average above or below the 200-day average, 6-month change). Three favourable = Positive, two or three unfavourable = Negative, otherwise Neutral. It describes the current trend; it is not a forecast or investment advice.',
-      src: 'Price sources: Yahoo Finance (international), CafeF (Vietnam), as of 23–24 November 2026. No data at the source for Argentina, Chile, Poland, Thailand, the Philippines, Saudi Arabia and Egypt. Analyst views: Morgan Stanley, UBS, Goldman Sachs, SSI Research, Vietcap (November 2026).',
+      src: 'Price sources: Yahoo Finance (international), CafeF (Vietnam), updated automatically twice a day. No data at the source for Argentina, Chile, Poland, Thailand, the Philippines, Saudi Arabia and Egypt. Analyst views: Morgan Stanley, UBS, Goldman Sachs, SSI Research, Vietcap (November 2026).',
       o: {
         am: 'After November’s AI-led pullback, the S&P 500 sits just below its 200-day average: a mixed technical signal. The big banks remain positive over 12 months (Morgan Stanley targets 8,700 by end-2027, UBS 8,200). Base case: a gradual recovery, with high volatility while doubts about AI persist.',
         eu: 'Europe is holding up better: most indices stay close to or above their 200-day average, led by Spain, Switzerland and the Benelux. UBS names the eurozone its preferred region (earnings expected +15% in 2027, Euro Stoxx 50 target of 7,000 by end-2027). Base case: stable to slightly higher; France is lagging. Türkiye is in a clear downtrend.',
@@ -81,13 +81,13 @@
         vn: 'Vietnam: the VN-Index is 12% below its record and under its 200-day average (negative short-term signal), and the Hanoi indices (HNX, HNX30) are clearly lower. Local analysts remain positive: SSI Research targets 1,940 points in 2027 (earnings +10%), Vietcap 2,280 by end-2027, helped by the FTSE upgrade to emerging-market status and the expected return of foreign investors. Base case: volatile in the short term, then firmer.'
       } },
     vi: { i: 2, locale: 'vi-VN', pct: ' %',
-      rank: 'Xếp hạng thế giới trong 1 năm', rankNote: 'Biến động của chỉ số chính mỗi nước từ ngày 24/11/2025 đến 23–24/11/2026.',
+      rank: 'Xếp hạng thế giới trong 1 năm', rankNote: 'Biến động của chỉ số chính mỗi nước trong 12 tháng qua.',
       cols: ['Quốc gia', 'Chỉ số', '1 năm', '1 năm', '6 tháng', 'Tín hiệu'],
       sig: ['Tích cực', 'Trung tính', 'Tiêu cực'],
       cont: { am: 'Châu Mỹ', eu: 'Châu Âu', as: 'Châu Á – Thái Bình Dương', me: 'Trung Đông và châu Phi', gl: 'Tham chiếu toàn cầu' },
-      med: 'Trung vị 1 năm', outlook: 'Xu hướng 6 tháng tới',
+      med: 'Trung vị 1 năm', outlook: 'Xu hướng 6 tháng tới (phân tích tháng 11/2026)',
       method: 'Cách đọc tín hiệu: kết hợp ba chỉ báo kỹ thuật đơn giản (giá trên hay dưới đường trung bình 200 phiên, đường trung bình 50 phiên trên hay dưới đường 200 phiên, biến động 6 tháng). Ba chỉ báo thuận lợi = Tích cực, hai hoặc ba chỉ báo bất lợi = Tiêu cực, còn lại là Trung tính. Đây là mô tả xu hướng hiện tại, không phải dự báo hay lời khuyên đầu tư.',
-      src: 'Nguồn giá: Yahoo Finance (quốc tế), CafeF (Việt Nam), tính đến 23–24/11/2026. Nguồn không có dữ liệu cho Argentina, Chile, Ba Lan, Thái Lan, Philippines, Ả Rập Xê Út và Ai Cập. Nhận định của chuyên gia: Morgan Stanley, UBS, Goldman Sachs, SSI Research, Vietcap (tháng 11/2026).',
+      src: 'Nguồn giá: Yahoo Finance (quốc tế), CafeF (Việt Nam), tự động cập nhật hai lần mỗi ngày. Nguồn không có dữ liệu cho Argentina, Chile, Ba Lan, Thái Lan, Philippines, Ả Rập Xê Út và Ai Cập. Nhận định của chuyên gia: Morgan Stanley, UBS, Goldman Sachs, SSI Research, Vietcap (tháng 11/2026).',
       o: {
         am: 'Sau đợt giảm tháng 11 do cổ phiếu AI, S&P 500 nằm ngay dưới đường trung bình 200 phiên: tín hiệu kỹ thuật lẫn lộn. Các ngân hàng lớn vẫn lạc quan trong 12 tháng (Morgan Stanley dự báo 8.700 điểm cuối 2027, UBS 8.200). Kịch bản chính: phục hồi dần, biến động mạnh chừng nào còn lo ngại về AI.',
         eu: 'Châu Âu chống chịu tốt hơn: phần lớn chỉ số vẫn gần hoặc trên đường trung bình 200 phiên, dẫn đầu là Tây Ban Nha, Thụy Sĩ và Benelux. UBS chọn khu vực đồng euro là ưu tiên (lợi nhuận dự kiến +15 % năm 2027, Euro Stoxx 50 mục tiêu 7.000 điểm cuối 2027). Kịch bản chính: ổn định đến tăng nhẹ; Pháp tụt lại phía sau. Thổ Nhĩ Kỳ đang giảm rõ rệt.',
@@ -100,6 +100,8 @@
 
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
   function sigOf(r) { var s = (r[8] > 0 ? 1 : -1) + (r[9] > 0 ? 1 : -1) + (r[6] > 0 ? 1 : -1); return s >= 3 ? 0 : s <= -1 ? 2 : 1; }
+
+  function stamp(L, lang) { var d = (typeof window !== 'undefined' && window.DATA_UPDATED) ? new Date(window.DATA_UPDATED) : null; if (!d || isNaN(d)) return ''; return ' <b>' + ({ fr: 'Mis à jour le ', en: 'Updated ', vi: 'Cập nhật ' }[lang] || '') + d.toLocaleString(L.locale, { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Ho_Chi_Minh' }) + '.</b>'; }
 
   function build(lang) {
     var L = T[lang] || T.fr;
@@ -118,7 +120,7 @@
     var seen = {}, main = ROWS.filter(function (r) { if (r[0] === 'gl' || seen[r[1]]) return false; seen[r[1]] = 1; return true; })
       .sort(function (a, b) { return b[5] - a[5]; });
     var max = Math.max.apply(null, main.map(function (r) { return Math.abs(r[5]); }));
-    h += '<h3 class="wi-h">' + L.rank + '</h3><p class="note">' + L.rankNote + '</p><div class="wi-rank">';
+    h += '<h3 class="wi-h">' + L.rank + '</h3><p class="note">' + L.rankNote + stamp(L, lang) + '</p><div class="wi-rank">';
     main.forEach(function (r) {
       var w = (Math.abs(r[5]) / max * 100).toFixed(1);
       h += '<div class="wi-rrow"><span class="wi-rname">' + esc(C[r[1]][L.i]) + ' <small>' + esc(r[2]) + '</small></span>' +
