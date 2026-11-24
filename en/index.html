@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My investment strategy — 300M VND</title>
+<meta name="description" content="Personal plan: a balanced allocation of 300 million VND over 3 to 5 years.">
+<link rel="alternate" hreflang="fr" href="https://danielnguyening.github.io/mon-site-investissement/">
+<link rel="alternate" hreflang="en" href="https://danielnguyening.github.io/mon-site-investissement/en/">
+<link rel="alternate" hreflang="vi" href="https://danielnguyening.github.io/mon-site-investissement/vi/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+  :root {
+    --dark: #123B2D; --green: #1F5C46; --mint: #A8D5BF; --ivory: #F6F4EE;
+    --line: #E2DED3; --ink: #1A1F1C; --muted: #3E4641; --grey: #5B635E;
+    --orange: #D98A3D; --blue: #3F7FA8; --gold: #C9A227; --sage: #8FB8A5;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--ivory); color: var(--ink); font-family: Inter, system-ui, sans-serif; font-size: 16px; line-height: 1.55; }
+  h1, h2, h3 { font-family: 'Space Grotesk', system-ui, sans-serif; margin: 0; }
+  p { margin: 0; }
+  a { color: var(--green); } a:hover { color: var(--dark); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  header { background: var(--dark); color: var(--ivory); }
+  header .wrap { padding-top: 72px; padding-bottom: 64px; display: flex; flex-direction: column; gap: 20px; }
+  .lang { display: flex; gap: 6px; align-self: flex-end; }
+  .lang a { color: var(--mint); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border: 1px solid var(--green); border-radius: 999px; }
+  .lang a:hover { color: var(--ivory); border-color: var(--mint); }
+  .lang a[aria-current] { background: var(--mint); color: var(--dark); border-color: var(--mint); }
+  .kicker { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--mint); font-weight: 600; }
+  header h1 { font-size: clamp(34px, 6vw, 52px); line-height: 1.08; max-width: 760px; }
+  .lead { font-size: 19px; max-width: 640px; color: #D7E8DF; }
+  .chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+  .chip { background: var(--green); border-radius: 10px; padding: 14px 20px; }
+  .chip small { display: block; font-size: 13px; color: var(--mint); }
+  .chip strong { font-family: 'Space Grotesk', sans-serif; font-size: 26px; }
+
+  main .wrap { padding-top: 56px; padding-bottom: 72px; display: flex; flex-direction: column; gap: 64px; }
+  section { display: flex; flex-direction: column; gap: 20px; }
+  section > h2 { font-size: 30px; }
+
+  .grid { display: grid; gap: 16px; }
+  .g3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 22px; display: flex; flex-direction: column; gap: 8px; }
+  .card.chosen { border: 2px solid var(--green); }
+  .label { font-size: 13px; font-weight: 600; color: var(--grey); text-transform: uppercase; letter-spacing: .08em; }
+  .big { font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; color: var(--green); }
+  .card p { color: var(--muted); }
+
+  .bar { display: flex; height: 44px; border-radius: 10px; overflow: hidden; }
+  .bar.thin { height: 12px; border-radius: 6px; }
+  .table-box { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; min-width: 560px; }
+  th { text-align: left; background: #EEF3EF; padding: 14px 18px; font-size: 14px; }
+  td { padding: 14px 18px; border-top: 1px solid var(--line); }
+  .num { text-align: right; }
+  td.num { font-weight: 600; }
+  .role { color: var(--muted); }
+  .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 10px; vertical-align: -1px; }
+  tr.total td { border-top: 2px solid var(--ink); background: var(--ivory); font-weight: 700; }
+
+  ol.rules { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  ol.rules li { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 22px; display: flex; gap: 16px; }
+  .n { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--orange); line-height: 1; }
+  ol.rules p { margin-top: 6px; color: var(--muted); }
+
+  .badge { font-family: Inter, sans-serif; font-size: 12px; font-weight: 600; background: var(--green); color: #fff; border-radius: 999px; padding: 3px 10px; vertical-align: middle; }
+  .cal { background: #EEF3EF; border-radius: 12px; padding: 28px; }
+  .cal h2 { font-size: 24px; }
+  .g3s { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .cal p { margin-top: 4px; color: var(--muted); }
+
+  .perf { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 8px 22px; }
+  .perf-row { display: grid; grid-template-columns: minmax(110px, 180px) 1fr 70px; align-items: center; gap: 14px; padding: 12px 0; border-top: 1px solid var(--line); }
+  .perf-row:first-child { border-top: none; }
+  .perf-row.index { font-style: italic; color: var(--muted); }
+  .perf-name small { display: block; font-size: 12px; color: var(--grey); font-style: normal; }
+  .track { display: grid; grid-template-columns: 1fr 1fr; height: 14px; }
+  .track .neg { display: flex; justify-content: flex-end; border-right: 2px solid var(--ink); }
+  .track .pos { display: flex; }
+  .track i { display: block; height: 100%; }
+  .track .neg i { background: var(--orange); border-radius: 4px 0 0 4px; }
+  .track .pos i { background: var(--green); border-radius: 0 4px 4px 0; }
+  .val { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .val.up { color: var(--green); } .val.down { color: #A8551A; }
+  .note { font-size: 14px; color: var(--grey); }
+
+  footer { border-top: 1px solid var(--line); }
+  footer p { padding-top: 24px; padding-bottom: 24px; font-size: 14px; color: var(--grey); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav class="lang" aria-label="Language"><a href="../" lang="fr">FR</a><a href="./" aria-current="page" lang="en">EN</a><a href="../vi/" lang="vi">VN</a></nav>
+    <p class="kicker">Personal plan · November 2026</p>
+    <h1>Investing 300 million VND, with peace of mind</h1>
+    <p class="lead">A balanced allocation over a 3 to 5 year horizon: a safe base, a growth pocket and protection against crises.</p>
+    <div class="chips">
+      <div class="chip"><small>Capital</small><strong>300M ₫</strong></div>
+      <div class="chip"><small>Horizon</small><strong>3–5 years</strong></div>
+      <div class="chip"><small>Profile</small><strong>Balanced</strong></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <section>
+      <h2>The current context</h2>
+      <div class="grid g3">
+        <div class="card"><p class="label">12-month savings</p><p class="big">6.1–7%</p><p>Online rates at many banks, but falling since October.</p></div>
+        <div class="card"><p class="label">VN-Index</p><p class="big">~1,740 pts</p><p>Below its record of 1,937 points (May 2026), after two months of decline.</p></div>
+        <div class="card"><p class="label">SJC gold</p><p class="big">135–138M</p><p>Per tael (buy / sell) in mid-November. The spread costs about 2% per round trip.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>My allocation</h2>
+      <div class="bar" aria-hidden="true">
+        <div style="flex:50;background:var(--sage)"></div>
+        <div style="flex:90;background:var(--green)"></div>
+        <div style="flex:100;background:var(--orange)"></div>
+        <div style="flex:30;background:var(--blue)"></div>
+        <div style="flex:30;background:var(--gold)"></div>
+      </div>
+      <div class="table-box">
+        <table>
+          <thead><tr><th>Pocket</th><th class="num">Amount</th><th class="num">Share</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td><span class="sw" style="background:var(--sage)"></span>Emergency fund (flexible savings)</td><td class="num">50M</td><td class="num">17%</td><td class="role">3 to 6 months of expenses, always available</td></tr>
+            <tr><td><span class="sw" style="background:var(--green)"></span>12-month term deposit (online)</td><td class="num">90M</td><td class="num">30%</td><td class="role">Safe return, around 6.5–7%</td></tr>
+            <tr><td><span class="sw" style="background:var(--orange)"></span>Equity ETFs (VN30 / VN Diamond)</td><td class="num">100M</td><td class="num">33%</td><td class="role">Long-term growth</td></tr>
+            <tr><td><span class="sw" style="background:var(--blue)"></span>Bond fund</td><td class="num">30M</td><td class="num">10%</td><td class="role">More than savings, moderate risk</td></tr>
+            <tr><td><span class="sw" style="background:var(--gold)"></span>Gold (9999 ring)</td><td class="num">30M</td><td class="num">10%</td><td class="role">Protection against crises and inflation</td></tr>
+            <tr class="total"><td>Total</td><td class="num">300M</td><td class="num">100%</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Watchlist: CAC 40 stocks</h2>
+      <p class="note">1-year share price change, recorded between 4 and 19 November 2026. Watchlist only: these stocks are not yet part of the allocation above.</p>
+      <div class="perf">
+        <div class="perf-row"><div class="perf-name">TotalEnergies<small>Energy</small></div><div class="track" aria-hidden="true"><div class="neg"></div><div class="pos"><i style="width:100%"></i></div></div><div class="val up">+44%</div></div>
+        <div class="perf-row"><div class="perf-name">Air Liquide<small>Industrial gases</small></div><div class="track" aria-hidden="true"><div class="neg"></div><div class="pos"><i style="width:58%"></i></div></div><div class="val up">+25.5%</div></div>
+        <div class="perf-row"><div class="perf-name">L'Oréal<small>Cosmetics</small></div><div class="track" aria-hidden="true"><div class="neg"></div><div class="pos"><i style="width:55%"></i></div></div><div class="val up">+24.1%</div></div>
+        <div class="perf-row"><div class="perf-name">Axa<small>Insurance</small></div><div class="track" aria-hidden="true"><div class="neg"></div><div class="pos"><i style="width:52%"></i></div></div><div class="val up">+23.1%</div></div>
+        <div class="perf-row"><div class="perf-name">Accor<small>Hospitality</small></div><div class="track" aria-hidden="true"><div class="neg"></div><div class="pos"><i style="width:18%"></i></div></div><div class="val up">+7.8%</div></div>
+        <div class="perf-row index"><div class="perf-name">CAC 40 index<small>Benchmark</small></div><div class="track" aria-hidden="true"><div class="neg"></div><div class="pos"><i style="width:3%"></i></div></div><div class="val up">+1.1%</div></div>
+        <div class="perf-row"><div class="perf-name">Sanofi<small>Pharmaceuticals</small></div><div class="track" aria-hidden="true"><div class="neg"><i style="width:3%"></i></div><div class="pos"></div></div><div class="val down">−1.0%</div></div>
+        <div class="perf-row"><div class="perf-name">LVMH<small>Luxury goods</small></div><div class="track" aria-hidden="true"><div class="neg"><i style="width:80%"></i></div><div class="pos"></div></div><div class="val down">−35%</div></div>
+      </div>
+      <p class="note">To invest from Vietnam: an ETF tracking the CAC 40 through an international broker is simpler and more diversified than buying stocks one by one. First check the rules on transferring capital abroad with your bank. Past performance does not guarantee future results.</p>
+    </section>
+
+    <section>
+      <h2>My 5 rules</h2>
+      <ol class="rules">
+        <li><span class="n">1</span><div><strong>Buy stocks in 5 instalments</strong><p>20M a month rather than 100M at once, to smooth out the purchase price.</p></div></li>
+        <li><span class="n">2</span><div><strong>ETFs and funds first</strong><p>Diversified, low fees. No individual stocks at the start.</p></div></li>
+        <li><span class="n">3</span><div><strong>Gold, for the long term only</strong><p>The buy / sell spread makes it unsuited to speculation.</p></div></li>
+        <li><span class="n">4</span><div><strong>Rebalance once a year</strong><p>Return to the target shares: sell what has risen too much, top up the rest.</p></div></li>
+        <li><span class="n">5</span><div><strong>Avoid the traps</strong><p>Peer-to-peer loans with promised returns, leveraged crypto, margin trading.</p></div></li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>By profile</h2>
+      <div class="grid g3">
+        <div class="card">
+          <h3>Cautious</h3>
+          <div class="bar thin" aria-hidden="true"><div style="flex:70;background:var(--green)"></div><div style="flex:15;background:var(--orange)"></div><div style="flex:15;background:var(--gold)"></div></div>
+          <p>70% savings and bonds · 15% stocks · 15% gold</p>
+        </div>
+        <div class="card chosen">
+          <h3>Balanced <span class="badge">my choice</span></h3>
+          <div class="bar thin" aria-hidden="true"><div style="flex:57;background:var(--green)"></div><div style="flex:33;background:var(--orange)"></div><div style="flex:10;background:var(--gold)"></div></div>
+          <p>57% savings and bonds · 33% stocks · 10% gold</p>
+        </div>
+        <div class="card">
+          <h3>Dynamic</h3>
+          <div class="bar thin" aria-hidden="true"><div style="flex:25;background:var(--green)"></div><div style="flex:60;background:var(--orange)"></div><div style="flex:15;background:var(--gold)"></div></div>
+          <p>25% savings · 60% stocks · 15% gold (horizon over 5 years)</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cal">
+      <h2>Timeline</h2>
+      <div class="grid g3s">
+        <div><strong>Month 1</strong><p>Emergency fund, term deposit, gold, bond fund, first ETF instalment.</p></div>
+        <div><strong>Months 2 to 5</strong><p>One 20M ETF instalment per month.</p></div>
+        <div><strong>Every year</strong><p>Review and rebalance; renew the deposit at the best rate.</p></div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <p class="wrap">Personal plan, for information only: this is not financial advice. Market figures recorded in November 2026, to be checked before every decision.</p>
+</footer>
+
+</body>
+</html>
