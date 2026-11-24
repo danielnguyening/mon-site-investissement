@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Connexion — Accès réservé</title>
+<script src="../auth.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+  :root { --dark: #123B2D; --green: #1F5C46; --mint: #A8D5BF; --ivory: #F6F4EE; --line: #E2DED3; --ink: #1A1F1C; --grey: #5B635E; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; background: var(--dark); color: var(--ink); font-family: Inter, system-ui, sans-serif; font-size: 16px; line-height: 1.5; }
+  .box { width: 100%; max-width: 400px; background: var(--ivory); border-radius: 16px; padding: 32px; display: flex; flex-direction: column; gap: 18px; }
+  .langs { display: flex; gap: 6px; justify-content: flex-end; }
+  .langs button { font: inherit; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: #fff; color: var(--ink); cursor: pointer; }
+  .langs button[aria-pressed="true"] { background: var(--green); border-color: var(--green); color: #fff; }
+  h1 { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 28px; line-height: 1.15; margin: 0; }
+  p { margin: 0; color: var(--grey); }
+  form { display: flex; flex-direction: column; gap: 14px; }
+  label { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; }
+  input[type=text], input[type=password] { font: inherit; padding: 12px 14px; border: 1px solid #C9C4B6; border-radius: 10px; background: #fff; min-height: 44px; }
+  input:focus { outline: 2px solid var(--green); outline-offset: 1px; }
+  .remember { flex-direction: row; align-items: center; gap: 8px; font-weight: 500; }
+  .remember input { width: 18px; height: 18px; }
+  button[type=submit] { font: inherit; font-weight: 700; min-height: 48px; border: none; border-radius: 10px; background: var(--green); color: #fff; cursor: pointer; }
+  button[type=submit]:hover { background: var(--dark); }
+  button[disabled] { opacity: .6; cursor: wait; }
+  .err { color: #9A3B12; font-size: 14px; font-weight: 600; min-height: 1.5em; }
+  .small { font-size: 13px; }
+</style>
+</head>
+<body>
+<main class="box">
+  <div class="langs" role="group" aria-label="Langue / Language / Ngôn ngữ">
+    <button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button><button type="button" data-l="vi">VN</button>
+  </div>
+  <h1 id="t-title">Accès réservé</h1>
+  <p id="t-intro">Ce site est privé. Connecte-toi avec l’identifiant et le mot de passe qui t’ont été donnés.</p>
+  <form id="f" novalidate>
+    <label><span id="t-user">Identifiant</span><input type="text" id="u" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" required></label>
+    <label><span id="t-pw">Mot de passe</span><input type="password" id="p" name="password" autocomplete="current-password" required></label>
+    <label class="remember"><input type="checkbox" id="r" checked><span id="t-rem">Rester connecté 30 jours sur cet appareil</span></label>
+    <p class="err" id="e" role="alert"></p>
+    <button type="submit" id="t-btn">Se connecter</button>
+  </form>
+  <p class="small" id="t-help">Pas de compte ? Demande un accès au propriétaire du site.</p>
+</main>
+<script>
+(function () {
+  var T = {
+    fr: { title: 'Accès réservé', intro: 'Ce site est privé. Connecte-toi avec l’identifiant et le mot de passe qui t’ont été donnés.', user: 'Identifiant', pw: 'Mot de passe', rem: 'Rester connecté 30 jours sur cet appareil', btn: 'Se connecter', wait: 'Vérification…', bad: 'Identifiant ou mot de passe incorrect.', empty: 'Remplis les deux champs.', help: 'Pas de compte ? Demande un accès au propriétaire du site.', doc: 'Connexion — Accès réservé' },
+    en: { title: 'Restricted access', intro: 'This site is private. Sign in with the username and password you were given.', user: 'Username', pw: 'Password', rem: 'Stay signed in for 30 days on this device', btn: 'Sign in', wait: 'Checking…', bad: 'Incorrect username or password.', empty: 'Please fill in both fields.', help: 'No account? Ask the site owner for access.', doc: 'Sign in — Restricted access' },
+    vi: { title: 'Truy cập hạn chế', intro: 'Trang web này là riêng tư. Hãy đăng nhập bằng tên đăng nhập và mật khẩu bạn đã được cấp.', user: 'Tên đăng nhập', pw: 'Mật khẩu', rem: 'Duy trì đăng nhập 30 ngày trên thiết bị này', btn: 'Đăng nhập', wait: 'Đang kiểm tra…', bad: 'Sai tên đăng nhập hoặc mật khẩu.', empty: 'Vui lòng điền cả hai ô.', help: 'Chưa có tài khoản? Hãy xin quyền truy cập từ chủ trang.', doc: 'Đăng nhập — Truy cập hạn chế' }
+  };
+  var base = window.SiteAuth.base;
+  var params = new URLSearchParams(location.search);
+  var next = params.get('next') || '';
+  try { var nu = new URL(next, location.href); next = (nu.origin === location.origin && nu.href.indexOf(base) === 0 && nu.pathname.indexOf('/login/') < 0) ? nu.href : base; } catch (e) { next = base; }
+  var lang = params.get('lang') || (/\/en\//.test(next) ? 'en' : /\/vi\//.test(next) ? 'vi' : 'fr');
+  if (window.SiteAuth.user()) { location.replace(next); return; }
+
+  function setLang(l) {
+    lang = T[l] ? l : 'fr'; var L = T[lang];
+    document.documentElement.lang = lang; document.title = L.doc;
+    ['title', 'intro', 'user', 'pw', 'rem', 'btn', 'help'].forEach(function (k) { document.getElementById('t-' + k).textContent = L[k]; });
+    document.querySelectorAll('.langs button').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.l === lang ? 'true' : 'false'); });
+    document.getElementById('e').textContent = '';
+  }
+  document.querySelectorAll('.langs button').forEach(function (b) { b.addEventListener('click', function () { setLang(b.dataset.l); }); });
+  setLang(lang);
+
+  document.getElementById('f').addEventListener('submit', async function (ev) {
+    ev.preventDefault();
+    var u = document.getElementById('u').value, p = document.getElementById('p').value, e = document.getElementById('e'), btn = document.getElementById('t-btn');
+    if (!u || !p) { e.textContent = T[lang].empty; return; }
+    btn.disabled = true; btn.textContent = T[lang].wait; e.textContent = '';
+    var ok = false;
+    try { ok = await window.SiteAuth.login(u, p, document.getElementById('r').checked); } catch (x) { ok = false; }
+    if (ok) { location.replace(next); return; }
+    btn.disabled = false; btn.textContent = T[lang].btn; e.textContent = T[lang].bad;
+    document.getElementById('p').value = ''; document.getElementById('p').focus();
+  });
+})();
+</script>
+</body>
+</html>
