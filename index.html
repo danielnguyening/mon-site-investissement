@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ma stratégie d'investissement — 300 M VND</title>
 <meta name="description" content="Plan personnel : répartition équilibrée de 300 millions VND sur 3 à 5 ans.">
+<link rel="alternate" hreflang="fr" href="https://danielnguyening.github.io/mon-site-investissement/">
+<link rel="alternate" hreflang="en" href="https://danielnguyening.github.io/mon-site-investissement/en/">
+<link rel="alternate" hreflang="vi" href="https://danielnguyening.github.io/mon-site-investissement/vi/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap">
@@ -23,6 +26,10 @@
 
   header { background: var(--dark); color: var(--ivory); }
   header .wrap { padding-top: 72px; padding-bottom: 64px; display: flex; flex-direction: column; gap: 20px; }
+  .lang { display: flex; gap: 6px; align-self: flex-end; }
+  .lang a { color: var(--mint); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border: 1px solid var(--green); border-radius: 999px; }
+  .lang a:hover { color: var(--ivory); border-color: var(--mint); }
+  .lang a[aria-current] { background: var(--mint); color: var(--dark); border-color: var(--mint); }
   .kicker { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--mint); font-weight: 600; }
   header h1 { font-size: clamp(34px, 6vw, 52px); line-height: 1.08; max-width: 760px; }
   .lead { font-size: 19px; max-width: 640px; color: #D7E8DF; }
@@ -89,6 +96,7 @@
 
 <header>
   <div class="wrap">
+    <nav class="lang" aria-label="Langue"><a href="./" aria-current="page" lang="fr">FR</a><a href="en/" lang="en">EN</a><a href="vi/" lang="vi">VN</a></nav>
     <p class="kicker">Plan personnel · Novembre 2026</p>
     <h1>Investir 300 millions VND, sereinement</h1>
     <p class="lead">Une répartition équilibrée sur un horizon de 3 à 5 ans : une base sûre, une poche de croissance et une protection contre les crises.</p>
