@@ -430,6 +430,11 @@ def main():
     except Exception as e:  # noqa: BLE001
         warn(f'actions non mises à jour: {e}')
     print(f'{ok}/3 fichiers écrits, {len(WARN)} avertissement(s)')
+    if ok > 0:
+        stamp = dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%MZ')
+        with open(os.path.join(DATA, 'status.json'), 'w', encoding='utf-8') as f:
+            json.dump({'updated': stamp, 'files': ok, 'warnings': len(WARN)}, f)
+            f.write('\n')
     if ok == 0:
         sys.exit(1)
 
