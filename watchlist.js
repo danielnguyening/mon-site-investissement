@@ -1,6 +1,6 @@
 (function () {
   // [nom, symbole, devise, dernier cours, date, variation 1 an %, variation 6 mois %, secteur (clé)]
-  var D = {
+  var D = window.WATCH || {
     FR: { idx: ['CAC 40', 1.1], rows: [
       ['TotalEnergies','TTE','EUR',77.87,'2026-11-24',39.3,-1,'energy'], ['LVMH','MC','EUR',391.7,'2026-11-24',-37,-17.1,'luxury'], ['Hermès','RMS','EUR',1243.5,'2026-11-24',-41.1,-22.5,'luxury'],
       ['L’Oréal','OR','EUR',439.05,'2026-11-24',20.2,21.4,'cosmetics'], ['Airbus','AIR','EUR',195.7,'2026-11-24',-2.2,15.4,'aero'], ['Schneider Electric','SU','EUR',230.85,'2026-11-24',3.6,-14.2,'electric'],
@@ -37,17 +37,17 @@
   var ORDER = ['FR', 'DE', 'US', 'VN', 'JP', 'KR', 'TW', 'CN'];
   var T = {
     fr: { i: 0, locale: 'fr-FR', pct: ' %', title: 'À suivre : grandes actions par pays', choose: 'Choisir le pays',
-      note: 'Variation du cours sur 1 an (barre) et sur 6 mois, au 20–24 novembre 2026. Liste de surveillance : ces actions ne font pas partie de la répartition ci-dessus.',
+      note: 'Variation du cours sur 1 an (barre) et sur 6 mois. Liste de surveillance : ces actions ne font pas partie de la répartition ci-dessus.',
       m6: '6 mois', idx: 'Indice de référence', vnUnit: 'milliers de ₫',
       foot: 'Sources : Yahoo Finance, CafeF (Vietnam). Pour investir à l’étranger depuis le Vietnam, un ETF sur l’indice du pays est plus simple et plus diversifié que des actions une par une ; vérifie d’abord les règles de transfert de capitaux auprès de ta banque. Les performances passées ne préjugent pas de l’avenir.',
       c: { FR: 'France', DE: 'Allemagne', US: 'États-Unis', VN: 'Vietnam', JP: 'Japon', KR: 'Corée du Sud', TW: 'Taïwan', CN: 'Chine' } },
     en: { i: 1, locale: 'en-GB', pct: '%', title: 'Watchlist: major stocks by country', choose: 'Choose a country',
-      note: '1-year share price change (bar) and 6-month change, as of 20–24 November 2026. Watchlist only: these stocks are not part of the allocation above.',
+      note: '1-year share price change (bar) and 6-month change. Watchlist only: these stocks are not part of the allocation above.',
       m6: '6 months', idx: 'Benchmark index', vnUnit: 'thousand ₫',
       foot: 'Sources: Yahoo Finance, CafeF (Vietnam). To invest abroad from Vietnam, an ETF on the country’s index is simpler and more diversified than single stocks; first check the rules on transferring capital with your bank. Past performance does not guarantee future results.',
       c: { FR: 'France', DE: 'Germany', US: 'United States', VN: 'Vietnam', JP: 'Japan', KR: 'South Korea', TW: 'Taiwan', CN: 'China' } },
     vi: { i: 2, locale: 'vi-VN', pct: ' %', title: 'Theo dõi: cổ phiếu chính theo quốc gia', choose: 'Chọn quốc gia',
-      note: 'Biến động giá trong 1 năm (thanh) và 6 tháng, tính đến 20–24/11/2026. Đây là danh sách theo dõi: các cổ phiếu này không nằm trong phân bổ ở trên.',
+      note: 'Biến động giá trong 1 năm (thanh) và 6 tháng. Đây là danh sách theo dõi: các cổ phiếu này không nằm trong phân bổ ở trên.',
       m6: '6 tháng', idx: 'Chỉ số tham chiếu', vnUnit: 'nghìn ₫',
       foot: 'Nguồn: Yahoo Finance, CafeF (Việt Nam). Để đầu tư ra nước ngoài từ Việt Nam, quỹ ETF theo chỉ số của nước đó đơn giản và đa dạng hơn mua từng cổ phiếu; hãy hỏi ngân hàng về quy định chuyển vốn trước. Kết quả trong quá khứ không đảm bảo cho tương lai.',
       c: { FR: 'Pháp', DE: 'Đức', US: 'Mỹ', VN: 'Việt Nam', JP: 'Nhật Bản', KR: 'Hàn Quốc', TW: 'Đài Loan', CN: 'Trung Quốc' } }
@@ -72,6 +72,7 @@
 
   function fmt(x, d) { return x.toLocaleString(L.locale, { minimumFractionDigits: d, maximumFractionDigits: d }); }
   function pct(x) { return (x > 0 ? '+' : x < 0 ? '−' : '') + fmt(Math.abs(x), 1) + L.pct; }
+  function stamp() { var d = window.DATA_UPDATED ? new Date(window.DATA_UPDATED) : null; if (!d || isNaN(d)) return ''; return ' <b>' + ({ fr: 'Mis à jour le ', en: 'Updated ', vi: 'Cập nhật ' }[lang] || '') + d.toLocaleString(L.locale, { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Ho_Chi_Minh' }) + '.</b>'; }
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
   function price(r) {
     var d = r[3] >= 1000 ? 0 : 2;
@@ -85,10 +86,10 @@
     var h = '<h2>' + L.title + '</h2>';
     h += '<div class="wl-tabs" role="group" aria-label="' + L.choose + '">';
     ORDER.forEach(function (k) {
-      if (!D[k].rows.length) return;
+      if (!D[k] || !D[k].rows.length) return;
       h += '<button type="button" data-c="' + k + '" aria-pressed="' + (k === cur ? 'true' : 'false') + '">' + L.c[k] + '</button>';
     });
-    h += '</div><p class="note">' + L.note + '</p><div class="perf">';
+    h += '</div><p class="note">' + L.note + stamp() + '</p><div class="perf">';
     var line = function (name, sub, v, extra, isIdx) {
       var w = Math.max(2, Math.abs(v) / max * 100).toFixed(1);
       return '<div class="perf-row' + (isIdx ? ' index' : '') + '"><div class="perf-name">' + esc(name) + '<small>' + sub + '</small></div>' +
