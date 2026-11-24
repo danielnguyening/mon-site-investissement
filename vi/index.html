@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chiến lược đầu tư của tôi — 300 triệu VND</title>
+<meta name="description" content="Kế hoạch cá nhân: phân bổ cân bằng 300 triệu đồng trong 3 đến 5 năm.">
+<link rel="alternate" hreflang="fr" href="https://danielnguyening.github.io/mon-site-investissement/">
+<link rel="alternate" hreflang="en" href="https://danielnguyening.github.io/mon-site-investissement/en/">
+<link rel="alternate" hreflang="vi" href="https://danielnguyening.github.io/mon-site-investissement/vi/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+  :root {
+    --dark: #123B2D; --green: #1F5C46; --mint: #A8D5BF; --ivory: #F6F4EE;
+    --line: #E2DED3; --ink: #1A1F1C; --muted: #3E4641; --grey: #5B635E;
+    --orange: #D98A3D; --blue: #3F7FA8; --gold: #C9A227; --sage: #8FB8A5;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--ivory); color: var(--ink); font-family: Inter, system-ui, sans-serif; font-size: 16px; line-height: 1.55; }
+  h1, h2, h3 { font-family: 'Space Grotesk', system-ui, sans-serif; margin: 0; }
+  p { margin: 0; }
+  a { color: var(--green); } a:hover { color: var(--dark); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  header { background: var(--dark); color: var(--ivory); }
+  header .wrap { padding-top: 72px; padding-bottom: 64px; display: flex; flex-direction: column; gap: 20px; }
+  .lang { display: flex; gap: 6px; align-self: flex-end; }
+  .lang a { color: var(--mint); text-decoration: none; font-size: 13px; font-weight: 600; padding: 6px 12px; border: 1px solid var(--green); border-radius: 999px; }
+  .lang a:hover { color: var(--ivory); border-color: var(--mint); }
+  .lang a[aria-current] { background: var(--mint); color: var(--dark); border-color: var(--mint); }
+  .kicker { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--mint); font-weight: 600; }
+  header h1 { font-size: clamp(34px, 6vw, 52px); line-height: 1.08; max-width: 760px; }
+  .lead { font-size: 19px; max-width: 640px; color: #D7E8DF; }
+  .chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+  .chip { background: var(--green); border-radius: 10px; padding: 14px 20px; }
+  .chip small { display: block; font-size: 13px; color: var(--mint); }
+  .chip strong { font-family: 'Space Grotesk', sans-serif; font-size: 26px; }
+
+  main .wrap { padding-top: 56px; padding-bottom: 72px; display: flex; flex-direction: column; gap: 64px; }
+  section { display: flex; flex-direction: column; gap: 20px; }
+  section > h2 { font-size: 30px; }
+
+  .grid { display: grid; gap: 16px; }
+  .g3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 22px; display: flex; flex-direction: column; gap: 8px; }
+  .card.chosen { border: 2px solid var(--green); }
+  .label { font-size: 13px; font-weight: 600; color: var(--grey); text-transform: uppercase; letter-spacing: .08em; }
+  .big { font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; color: var(--green); }
+  .card p { color: var(--muted); }
+
+  .bar { display: flex; height: 44px; border-radius: 10px; overflow: hidden; }
+  .bar.thin { height: 12px; border-radius: 6px; }
+  .table-box { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; min-width: 560px; }
+  th { text-align: left; background: #EEF3EF; padding: 14px 18px; font-size: 14px; }
+  td { padding: 14px 18px; border-top: 1px solid var(--line); }
+  .num { text-align: right; }
+  td.num { font-weight: 600; }
+  .role { color: var(--muted); }
+  .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 10px; vertical-align: -1px; }
+  tr.total td { border-top: 2px solid var(--ink); background: var(--ivory); font-weight: 700; }
+
+  ol.rules { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  ol.rules li { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 22px; display: flex; gap: 16px; }
+  .n { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--orange); line-height: 1; }
+  ol.rules p { margin-top: 6px; color: var(--muted); }
+
+  .badge { font-family: Inter, sans-serif; font-size: 12px; font-weight: 600; background: var(--green); color: #fff; border-radius: 999px; padding: 3px 10px; vertical-align: middle; }
+  .cal { background: #EEF3EF; border-radius: 12px; padding: 28px; }
+  .cal h2 { font-size: 24px; }
+  .g3s { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .cal p { margin-top: 4px; color: var(--muted); }
+
+  .perf { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 8px 22px; }
+  .perf-row { display: grid; grid-template-columns: minmax(110px, 180px) 1fr 70px; align-items: center; gap: 14px; padding: 12px 0; border-top: 1px solid var(--line); }
+  .perf-row:first-child { border-top: none; }
+  .perf-row.index { font-style: italic; color: var(--muted); }
+  .perf-name small { display: block; font-size: 12px; color: var(--grey); font-style: normal; }
+  .track { display: grid; grid-template-columns: 1fr 1fr; height: 14px; }
+  .track .neg { display: flex; justify-content: flex-end; border-right: 2px solid var(--ink); }
+  .track .pos { display: flex; }
+  .track i { display: block; height: 100%; }
+  .track .neg i { background: var(--orange); border-radius: 4px 0 0 4px; }
+  .track .pos i { background: var(--green); border-radius: 0 4px 4px 0; }
+  .val { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .val.up { color: var(--green); } .val.down { color: #A8551A; }
+  .note { font-size: 14px; color: var(--grey); }
+
+  footer { border-top: 1px solid var(--line); }
+  footer p { padding-top: 24px; padding-bottom: 24px; font-size: 14px; color: var(--grey); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav class="lang" aria-label="Ngôn ngữ"><a href="../" lang="fr">FR</a><a href="../en/" lang="en">EN</a><a href="./" aria-current="page" lang="vi">VN</a></nav>
+    <p class="kicker">Kế hoạch cá nhân · Tháng 11/2026</p>
+    <h1>Đầu tư 300 triệu đồng một cách an tâm</h1>
+    <p class="lead">Phân bổ cân bằng trong 3 đến 5 năm: một nền tảng an toàn, một phần tăng trưởng và một lớp bảo vệ trước khủng hoảng.</p>
+    <div class="chips">
+      <div class="chip"><small>Vốn</small><strong>300 triệu ₫</strong></div>
+      <div class="chip"><small>Thời gian</small><strong>3–5 năm</strong></div>
+      <div class="chip"><small>Khẩu vị</small><strong>Cân bằng</strong></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <section>
+      <h2>Bối cảnh hiện tại</h2>
+      <div class="grid g3">
+        <div class="card"><p class="label">Tiết kiệm 12 tháng</p><p class="big">6,1 – 7 %</p><p>Lãi suất gửi online tại nhiều ngân hàng, nhưng đang giảm từ tháng 10.</p></div>
+        <div class="card"><p class="label">VN-Index</p><p class="big">~1.740 điểm</p><p>Dưới mức đỉnh 1.937 điểm (tháng 5/2026), sau hai tháng giảm.</p></div>
+        <div class="card"><p class="label">Vàng SJC</p><p class="big">135 – 138 triệu</p><p>Mỗi lượng (mua vào / bán ra) giữa tháng 11. Chênh lệch mua – bán tốn khoảng 2 % mỗi lần mua rồi bán.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Phân bổ của tôi</h2>
+      <div class="bar" aria-hidden="true">
+        <div style="flex:50;background:var(--sage)"></div>
+        <div style="flex:90;background:var(--green)"></div>
+        <div style="flex:100;background:var(--orange)"></div>
+        <div style="flex:30;background:var(--blue)"></div>
+        <div style="flex:30;background:var(--gold)"></div>
+      </div>
+      <div class="table-box">
+        <table>
+          <thead><tr><th>Khoản</th><th class="num">Số tiền</th><th class="num">Tỷ trọng</th><th>Vai trò</th></tr></thead>
+          <tbody>
+            <tr><td><span class="sw" style="background:var(--sage)"></span>Quỹ dự phòng (tiết kiệm linh hoạt)</td><td class="num">50 triệu</td><td class="num">17 %</td><td class="role">3 đến 6 tháng chi tiêu, luôn sẵn sàng</td></tr>
+            <tr><td><span class="sw" style="background:var(--green)"></span>Tiền gửi kỳ hạn 12 tháng (online)</td><td class="num">90 triệu</td><td class="num">30 %</td><td class="role">Lợi nhuận an toàn, khoảng 6,5 – 7 %</td></tr>
+            <tr><td><span class="sw" style="background:var(--orange)"></span>ETF cổ phiếu (VN30 / VN Diamond)</td><td class="num">100 triệu</td><td class="num">33 %</td><td class="role">Tăng trưởng dài hạn</td></tr>
+            <tr><td><span class="sw" style="background:var(--blue)"></span>Quỹ trái phiếu</td><td class="num">30 triệu</td><td class="num">10 %</td><td class="role">Cao hơn tiết kiệm, rủi ro vừa phải</td></tr>
+            <tr><td><span class="sw" style="background:var(--gold)"></span>Vàng (nhẫn 9999)</td><td class="num">30 triệu</td><td class="num">10 %</td><td class="role">Bảo vệ trước khủng hoảng và lạm phát</td></tr>
+            <tr class="total"><td>Tổng</td><td class="num">300 triệu</td><td class="num">100 %</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Theo dõi: cổ phiếu CAC 40</h2>
+      <p class="note">Biến động giá trong 1 năm, ghi nhận từ ngày 4 đến 19/11/2026. Đây là danh sách theo dõi: các cổ phiếu này chưa nằm trong phân bổ ở trên.</p>
+      <div class="perf">
+        <div class="perf-row"><div class="perf-name">TotalEnergies<small>Năng lượng</small></div><div class="track" aria-hidden="true"><div class="neg"></div><div class="pos"><i style="width:100%"></i></div></div><div class="val up">+44 %</div></div>
+        <div class="perf-row"><div class="perf-name">Air Liquide<small>Khí công nghiệp</small></div><div class="track" aria-hidden="true"><div class="neg"></div><div class="pos"><i style="width:58%"></i></div></div><div class="val up">+25,5 %</div></div>
+        <div class="perf-row"><div class="perf-name">L'Oréal<small>Mỹ phẩm</small></div><div class="track" aria-hidden="true"><div class="neg"></div><div class="pos"><i style="width:55%"></i></div></div><div class="val up">+24,1 %</div></div>
+        <div class="perf-row"><div class="perf-name">Axa<small>Bảo hiểm</small></div><div class="track" aria-hidden="true"><div class="neg"></div><div class="pos"><i style="width:52%"></i></div></div><div class="val up">+23,1 %</div></div>
+        <div class="perf-row"><div class="perf-name">Accor<small>Khách sạn</small></div><div class="track" aria-hidden="true"><div class="neg"></div><div class="pos"><i style="width:18%"></i></div></div><div class="val up">+7,8 %</div></div>
+        <div class="perf-row index"><div class="perf-name">Chỉ số CAC 40<small>Tham chiếu</small></div><div class="track" aria-hidden="true"><div class="neg"></div><div class="pos"><i style="width:3%"></i></div></div><div class="val up">+1,1 %</div></div>
+        <div class="perf-row"><div class="perf-name">Sanofi<small>Dược phẩm</small></div><div class="track" aria-hidden="true"><div class="neg"><i style="width:3%"></i></div><div class="pos"></div></div><div class="val down">−1,0 %</div></div>
+        <div class="perf-row"><div class="perf-name">LVMH<small>Hàng xa xỉ</small></div><div class="track" aria-hidden="true"><div class="neg"><i style="width:80%"></i></div><div class="pos"></div></div><div class="val down">−35 %</div></div>
+      </div>
+      <p class="note">Để đầu tư từ Việt Nam: một quỹ ETF mô phỏng chỉ số CAC 40 qua công ty môi giới quốc tế đơn giản và đa dạng hơn so với mua từng cổ phiếu. Hãy hỏi ngân hàng về quy định chuyển vốn ra nước ngoài trước. Kết quả trong quá khứ không đảm bảo cho tương lai.</p>
+    </section>
+
+    <section>
+      <h2>5 nguyên tắc của tôi</h2>
+      <ol class="rules">
+        <li><span class="n">1</span><div><strong>Mua cổ phiếu làm 5 lần</strong><p>20 triệu mỗi tháng thay vì 100 triệu một lúc, để bình quân giá mua.</p></div></li>
+        <li><span class="n">2</span><div><strong>Ưu tiên ETF và quỹ</strong><p>Đa dạng hóa, phí thấp. Chưa mua cổ phiếu riêng lẻ lúc đầu.</p></div></li>
+        <li><span class="n">3</span><div><strong>Vàng chỉ để giữ dài hạn</strong><p>Chênh lệch mua – bán khiến vàng không phù hợp để lướt sóng.</p></div></li>
+        <li><span class="n">4</span><div><strong>Tái cân bằng mỗi năm một lần</strong><p>Đưa về tỷ trọng mục tiêu: bán bớt phần tăng quá nhiều, bổ sung phần còn lại.</p></div></li>
+        <li><span class="n">5</span><div><strong>Tránh các cạm bẫy</strong><p>Cho vay cá nhân hứa hẹn lợi nhuận cao, tiền số dùng đòn bẩy, giao dịch ký quỹ.</p></div></li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Theo khẩu vị rủi ro</h2>
+      <div class="grid g3">
+        <div class="card">
+          <h3>Thận trọng</h3>
+          <div class="bar thin" aria-hidden="true"><div style="flex:70;background:var(--green)"></div><div style="flex:15;background:var(--orange)"></div><div style="flex:15;background:var(--gold)"></div></div>
+          <p>70 % tiết kiệm và trái phiếu · 15 % cổ phiếu · 15 % vàng</p>
+        </div>
+        <div class="card chosen">
+          <h3>Cân bằng <span class="badge">lựa chọn của tôi</span></h3>
+          <div class="bar thin" aria-hidden="true"><div style="flex:57;background:var(--green)"></div><div style="flex:33;background:var(--orange)"></div><div style="flex:10;background:var(--gold)"></div></div>
+          <p>57 % tiết kiệm và trái phiếu · 33 % cổ phiếu · 10 % vàng</p>
+        </div>
+        <div class="card">
+          <h3>Năng động</h3>
+          <div class="bar thin" aria-hidden="true"><div style="flex:25;background:var(--green)"></div><div style="flex:60;background:var(--orange)"></div><div style="flex:15;background:var(--gold)"></div></div>
+          <p>25 % tiết kiệm · 60 % cổ phiếu · 15 % vàng (thời gian trên 5 năm)</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cal">
+      <h2>Lộ trình</h2>
+      <div class="grid g3s">
+        <div><strong>Tháng 1</strong><p>Quỹ dự phòng, tiền gửi kỳ hạn, vàng, quỹ trái phiếu, đợt mua ETF đầu tiên.</p></div>
+        <div><strong>Tháng 2 đến 5</strong><p>Mỗi tháng mua thêm 20 triệu ETF.</p></div>
+        <div><strong>Hằng năm</strong><p>Đánh giá và tái cân bằng; gia hạn tiền gửi với lãi suất tốt nhất.</p></div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <p class="wrap">Kế hoạch cá nhân, chỉ mang tính tham khảo: đây không phải lời khuyên tài chính. Số liệu thị trường ghi nhận tháng 11/2026, cần kiểm tra lại trước mỗi quyết định.</p>
+</footer>
+
+</body>
+</html>
