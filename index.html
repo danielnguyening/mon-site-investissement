@@ -104,6 +104,12 @@
   .mk-chg { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
   .mk-chg.up { color: var(--green); } .mk-chg.down { color: #A8551A; }
 
+  .wl-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+  .wl-tabs button { font: inherit; font-size: 14px; font-weight: 600; padding: 8px 16px; min-height: 44px; border-radius: 999px; border: 1px solid var(--line); background: #fff; color: var(--ink); cursor: pointer; }
+  .wl-tabs button[aria-pressed="true"] { background: var(--green); color: #fff; border-color: var(--green); }
+  #watchlist .perf-row { grid-template-columns: minmax(130px, 280px) 1fr 112px; }
+  .wl-6m { display: block; font-size: 12px; font-weight: 500; color: var(--grey); }
+
   footer { border-top: 1px solid var(--line); }
   footer p { padding-top: 24px; padding-bottom: 24px; font-size: 14px; color: var(--grey); }
 </style>
@@ -160,21 +166,7 @@
       </div>
     </section>
 
-    <section>
-      <h2>À suivre : actions du CAC 40</h2>
-      <p class="note">Évolution du cours sur 1 an, relevée entre le 4 et le 19 novembre 2026. Liste de surveillance : ces actions ne font pas encore partie de la répartition ci-dessus.</p>
-      <div class="perf">
-        <div class="perf-row"><div class="perf-name">TotalEnergies<small>Énergie</small></div><div class="track" aria-hidden="true"><div class="neg"></div><div class="pos"><i style="width:100%"></i></div></div><div class="val up">+44 %</div></div>
-        <div class="perf-row"><div class="perf-name">Air Liquide<small>Gaz industriels</small></div><div class="track" aria-hidden="true"><div class="neg"></div><div class="pos"><i style="width:58%"></i></div></div><div class="val up">+25,5 %</div></div>
-        <div class="perf-row"><div class="perf-name">L'Oréal<small>Cosmétiques</small></div><div class="track" aria-hidden="true"><div class="neg"></div><div class="pos"><i style="width:55%"></i></div></div><div class="val up">+24,1 %</div></div>
-        <div class="perf-row"><div class="perf-name">Axa<small>Assurance</small></div><div class="track" aria-hidden="true"><div class="neg"></div><div class="pos"><i style="width:52%"></i></div></div><div class="val up">+23,1 %</div></div>
-        <div class="perf-row"><div class="perf-name">Accor<small>Hôtellerie</small></div><div class="track" aria-hidden="true"><div class="neg"></div><div class="pos"><i style="width:18%"></i></div></div><div class="val up">+7,8 %</div></div>
-        <div class="perf-row index"><div class="perf-name">Indice CAC 40<small>Référence</small></div><div class="track" aria-hidden="true"><div class="neg"></div><div class="pos"><i style="width:3%"></i></div></div><div class="val up">+1,1 %</div></div>
-        <div class="perf-row"><div class="perf-name">Sanofi<small>Pharmacie</small></div><div class="track" aria-hidden="true"><div class="neg"><i style="width:3%"></i></div><div class="pos"></div></div><div class="val down">−1,0 %</div></div>
-        <div class="perf-row"><div class="perf-name">LVMH<small>Luxe</small></div><div class="track" aria-hidden="true"><div class="neg"><i style="width:80%"></i></div><div class="pos"></div></div><div class="val down">−35 %</div></div>
-      </div>
-      <p class="note">Pour investir depuis le Vietnam : un ETF qui réplique le CAC 40 via un courtier international est plus simple et plus diversifié que des actions une par une. Vérifie d'abord les règles de transfert de capitaux à l'étranger auprès de ta banque. Performances passées : elles ne préjugent pas de l'avenir.</p>
-    </section>
+    <section id="watchlist"></section>
 
     <section>
       <h2>Les marchés mondiaux</h2>
@@ -233,5 +225,6 @@
 
 <script src="data/indices.js"></script>
 <script src="charts.js"></script>
+<script src="watchlist.js"></script>
 </body>
 </html>
