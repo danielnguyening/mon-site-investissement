@@ -348,7 +348,8 @@ def world_row(reg, cc, name, src, sym):
     spark = [value_at(s, t1y + dt.timedelta(days=14 * k)) for k in range(26)] + [v_last]
     spark = [x if x is not None else v1y for x in spark]
     return [reg, cc, name, d_last.isoformat(), rnd(v_last), pct(v_last, v1y), pct(v_last, v6m), pct(v_last, v3m),
-            pct(v_last, ma200), pct(ma50, ma200), pct(v_last, hi), [round(x / spark[0] * 100, 1) for x in spark]]
+            pct(v_last, ma200), pct(ma50, ma200), pct(v_last, hi), [round(x / spark[0] * 100, 1) for x in spark],
+            pct(v_last, closes[-2]) if len(closes) > 1 else 0, pct(v_last, value_at(s, TODAY - dt.timedelta(days=30)))]
 
 
 def build_world():
@@ -420,7 +421,7 @@ def main():
     try:
         world = build_world()
         if world:
-            write_js('world.js', 'WORLD_ROWS', world, '[continent, pays, indice, date, dernier, 1 an %, 6 mois %, 3 mois %, écart MM200 %, MM50 vs MM200 %, écart plus haut 1 an %, courbe 1 an base 100]')
+            write_js('world.js', 'WORLD_ROWS', world, '[continent, pays, indice, date, dernier, 1 an %, 6 mois %, 3 mois %, écart MM200 %, MM50 vs MM200 %, écart plus haut 1 an %, courbe 1 an base 100, 1 jour %, 1 mois %]')
             ok += 1
     except Exception as e:  # noqa: BLE001
         warn(f'indices mondiaux non mis à jour: {e}')
