@@ -10,7 +10,7 @@
   var base = script ? script.src.replace(/update\.js(\?.*)?$/, '') : '';
   var lang = (document.documentElement.lang || 'fr').slice(0, 2);
   var T = {
-    fr: { locale: 'fr-FR', last: 'Données mises à jour le', unknown: 'Date de mise à jour inconnue', btn: 'Mettre à jour', auto: 'Mises à jour automatiques chaque jour à 7 h et 16 h (heure du Vietnam).',
+    fr: { locale: 'fr-FR', last: 'Données mises à jour le', unknown: 'Date de mise à jour inconnue', btn: 'Mettre à jour', auto: 'Mises à jour automatiques toutes les 2 heures (heures paires, heure du Vietnam).',
       running: 'Mise à jour en cours : les nouveaux chiffres arrivent dans 10 à 15 minutes. La page se rechargera toute seule.', started: 'Lancée à', cancel: 'Arrêter d’attendre',
       timeout: 'Pas de nouvelles données après 40 minutes. Vérifie l’onglet Actions sur GitHub.',
       need: 'Pour lancer une mise à jour, il faut l’autoriser depuis ton compte GitHub.', gh: 'Lancer sur GitHub', ghNote: 'Ouvre GitHub, clique sur « Run workflow » puis sur le bouton vert. Cette page attendra les nouvelles données.',
@@ -18,7 +18,7 @@
       create: 'Créer le jeton', save: 'Enregistrer', placeholder: 'github_pat_…', forget: 'Oublier le jeton de cet appareil', saved: 'Jeton enregistré sur cet appareil.',
       bad: 'GitHub a refusé la demande (jeton invalide, expiré ou sans la permission Actions). Le jeton a été oublié.', net: 'Impossible de joindre GitHub. Réessaie plus tard.', close: 'Fermer',
       trends: 'Les cours, courbes et signaux de tendance sont recalculés ; les commentaires écrits restent ceux de novembre 2026.' },
-    en: { locale: 'en-GB', last: 'Data updated on', unknown: 'Update time unknown', btn: 'Update now', auto: 'Automatic updates every day at 7:00 and 16:00 (Vietnam time).',
+    en: { locale: 'en-GB', last: 'Data updated on', unknown: 'Update time unknown', btn: 'Update now', auto: 'Automatic updates every 2 hours (even hours, Vietnam time).',
       running: 'Update in progress: new figures arrive in 10 to 15 minutes. This page will reload by itself.', started: 'Started at', cancel: 'Stop waiting',
       timeout: 'No new data after 40 minutes. Check the Actions tab on GitHub.',
       need: 'To start an update, you need to allow it from your GitHub account.', gh: 'Start on GitHub', ghNote: 'Opens GitHub: click “Run workflow”, then the green button. This page will wait for the new data.',
@@ -26,7 +26,7 @@
       create: 'Create the token', save: 'Save', placeholder: 'github_pat_…', forget: 'Forget the token on this device', saved: 'Token saved on this device.',
       bad: 'GitHub refused the request (invalid or expired token, or missing Actions permission). The token has been forgotten.', net: 'Cannot reach GitHub. Try again later.', close: 'Close',
       trends: 'Prices, curves and trend signals are recalculated; the written comments stay those of November 2026.' },
-    vi: { locale: 'vi-VN', last: 'Dữ liệu cập nhật', unknown: 'Không rõ thời điểm cập nhật', btn: 'Cập nhật', auto: 'Tự động cập nhật mỗi ngày lúc 7 h và 16 h (giờ Việt Nam).',
+    vi: { locale: 'vi-VN', last: 'Dữ liệu cập nhật', unknown: 'Không rõ thời điểm cập nhật', btn: 'Cập nhật', auto: 'Tự động cập nhật mỗi 2 giờ (giờ chẵn, giờ Việt Nam).',
       running: 'Đang cập nhật: số liệu mới sẽ có sau 10–15 phút. Trang sẽ tự tải lại.', started: 'Bắt đầu lúc', cancel: 'Thôi chờ',
       timeout: 'Chưa có dữ liệu mới sau 40 phút. Hãy kiểm tra tab Actions trên GitHub.',
       need: 'Để chạy cập nhật, bạn cần cho phép từ tài khoản GitHub của mình.', gh: 'Chạy trên GitHub', ghNote: 'Mở GitHub, bấm “Run workflow” rồi bấm nút màu xanh. Trang này sẽ chờ dữ liệu mới.',
